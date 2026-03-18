@@ -171,8 +171,8 @@ function KimlikKarti({ dev }: { dev: Developer }) {
             style={styles.hireBtn}
             start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
           >
-            <Text style={styles.hireBtnIcon}>{musaitMi ? '✅' : '🔄'}</Text>
-            <Text style={styles.hireBtnText}>{musaitMi ? 'İşe Al' : 'Serbest Bırak'}</Text>
+            <Text style={styles.hireBtnIcon}>{musaitMi ? '✅' : '💼'}</Text>
+            <Text style={styles.hireBtnText}>{musaitMi ? 'İşe Al' : 'Projelerde Çalışıyor'}</Text>
           </LinearGradient>
         </TouchableOpacity>
       </LinearGradient>
