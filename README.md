@@ -1,50 +1,95 @@
-# Welcome to your Expo app 👋
+# 🪪 Yazılımcı Kimlik Kartı
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+React Native ile geliştirilmiş, oyunlaştırma öğeleri içeren bir **Yazılımcı Profil Kartı** uygulaması.
 
-## Get started
+Geliştiricilerin profil bilgilerini (ad, uzmanlık, seviye) görüntüleyin, "İşe Al" butonuyla durumlarını değiştirin ve XP kazanarak seviyeleri açın!
 
-1. Install dependencies
+## 🎮 Oyunlaştırma Özellikleri
 
-   ```bash
-   npm install
-   ```
+- **XP & Seviye Sistemi**: Her aksiyon XP kazandırır. 11 farklı seviye (Stajyer HR → İK Tanrısı)
+- **12 Başarım / Rozet**: İlk Teklif, Takım Kurucu, CEO, Altın HR ve daha fazlası
+- **Seviye Yol Haritası**: İlerlemenizi görsel olarak takip edin
+- **Animasyonlu Kartlar**: Giriş animasyonları, buton efektleri, popup bildirimleri
+- **Dinamik Durum Yönetimi**: Props (ad, uzmanlık, seviye) ve State (müsaitMi) kullanımı
 
-2. Start the app
+## 📱 Ekran Görüntüleri
 
-   ```bash
-   npx expo start
-   ```
+| Ana Ekran | Başarımlar |
+|-----------|-----------|
+| Geliştirici kartları, XP barı | Rozetler, istatistikler, yol haritası |
 
-In the output, you'll find options to open the app in a
+## 🚀 Nasıl Çalıştırılır?
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Gereksinimler
+- Node.js (v18+)
+- npm veya yarn
+- Expo CLI
+- Expo Go uygulaması (telefonda test için)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### Kurulum
 
 ```bash
-npm run reset-project
+# Repoyu klonlayın
+git clone https://github.com/aleynaerrsln/YazilimciKimlikKarti.git
+
+# Proje dizinine gidin
+cd YazilimciKimlikKarti
+
+# Bağımlılıkları yükleyin
+npm install
+
+# Uygulamayı başlatın
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Çalıştırma Seçenekleri
 
-## Learn more
+- **Android**: `npm run android` veya Expo Go ile QR kod tarayın
+- **iOS**: `npm run ios` (macOS gerekli) veya Expo Go ile QR kod tarayın
+- **Web**: `npm run web`
 
-To learn more about developing your project with Expo, look at the following resources:
+## 📦 APK İndirme
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+> APK dosyası: [Releases](https://github.com/aleynaerrsln/YazilimciKimlikKarti/releases) sayfasından indirilebilir.
 
-## Join the community
+## 🎥 Tanıtım Videosu
 
-Join our community of developers creating universal apps.
+> YouTube linki: _Eklenecek_
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🛠️ Kullanılan Teknolojiler
+
+- **React Native** + **Expo** (SDK 54)
+- **TypeScript**
+- **Expo Router** (File-based routing)
+- **expo-linear-gradient** (Gradient arka planlar)
+- **React Native Animated API** (Animasyonlar)
+- **Context API** (Global state yönetimi)
+
+## 📂 Proje Yapısı
+
+```
+├── app/
+│   ├── (tabs)/
+│   │   ├── index.tsx       # Ana ekran - Geliştirici kartları
+│   │   ├── explore.tsx     # Başarımlar ve istatistikler
+│   │   └── _layout.tsx     # Tab navigasyon
+│   └── _layout.tsx         # Root layout + GameProvider
+├── context/
+│   └── GameContext.tsx      # Oyun state yönetimi (XP, seviye, başarımlar)
+└── README.md
+```
+
+## 🤖 AI Prompt Özeti
+
+**En iyi prompt:**
+> "Bu React Native kodunu production-ready hale getir: gradient kartlar, giriş animasyonları, XP/seviye sistemi, başarım popup'ları ekle. Context API ile global state yönet. Her aksiyon XP kazandırsın ve başarım rozetleri açılsın."
+
+**Öğrenilen detay:** React Native'de `Animated.sequence` ve `Animated.parallel` ile karmaşık animasyon zincirleri oluşturulabiliyor. `Easing.out(Easing.back(1.2))` ile kartlara "bounce" efekti vererek çok daha profesyonel bir giriş animasyonu elde ettik.
+
+## 👩‍💻 Geliştirici
+
+**Aleyna Arslan** - AIgile Mobile Development Dersi
+
+---
+
+_Bu proje AIgile Mobile Development dersi kapsamında geliştirilmiştir._

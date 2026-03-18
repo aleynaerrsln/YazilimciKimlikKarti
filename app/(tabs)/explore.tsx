@@ -1,112 +1,150 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, Animated } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useGame, LEVEL_TITLES, xpForLevel } from '../../context/GameContext';
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Fonts } from '@/constants/theme';
+function AchievementCard({ icon, title, description, unlocked, index }: {
+  icon: string; title: string; description: string; unlocked: boolean; index: number;
+}) {
+  const anim = useRef(new Animated.Value(0)).current;
 
-export default function TabTwoScreen() {
+  useEffect(() => {
+    Animated.timing(anim, { toValue: 1, duration: 500, delay: index * 60, useNativeDriver: true }).start();
+  }, []);
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
-          Explore
-        </ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <Animated.View style={[
+      styles.achCard,
+      { opacity: anim, transform: [{ translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [30, 0] }) }] },
+      !unlocked && styles.achLocked,
+    ]}>
+      <Text style={styles.achIcon}>{unlocked ? icon : '🔒'}</Text>
+      <View style={styles.achInfo}>
+        <Text style={[styles.achTitle, !unlocked && { color: '#4a5568' }]}>{title}</Text>
+        <Text style={[styles.achDesc, !unlocked && { color: '#2d3748' }]}>{description}</Text>
+      </View>
+      {unlocked && <Text style={styles.achCheck}>✅</Text>}
+    </Animated.View>
+  );
+}
+
+function StatsSection() {
+  const { xp, level, levelTitle, totalHires, totalSwitches } = useGame();
+  const stats = [
+    { icon: '⭐', label: 'Toplam XP', value: xp.toString() },
+    { icon: '📊', label: 'Seviye', value: `${level} - ${levelTitle}` },
+    { icon: '🤝', label: 'Toplam İşe Alım', value: totalHires.toString() },
+    { icon: '🔄', label: 'Durum Değişikliği', value: totalSwitches.toString() },
+  ];
+
+  return (
+    <View style={styles.statsBox}>
+      {stats.map((s, i) => (
+        <View key={i} style={styles.statItem}>
+          <Text style={styles.statIcon}>{s.icon}</Text>
+          <Text style={styles.statLabel}>{s.label}</Text>
+          <Text style={styles.statValue}>{s.value}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
+function LevelRoadmap() {
+  const { level } = useGame();
+  return (
+    <View style={styles.roadmap}>
+      <Text style={styles.sectionTitle}>🗺️ Seviye Yol Haritası</Text>
+      {LEVEL_TITLES.map((title, i) => {
+        const reached = level >= i;
+        const current = level === i;
+        return (
+          <View key={i} style={[styles.roadItem, current && styles.roadCurrent]}>
+            <View style={[styles.roadDot, reached ? styles.dotOn : styles.dotOff]}>
+              <Text style={styles.roadNum}>{i}</Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.roadTitle, reached && { color: '#ccd6f6' }]}>{title}</Text>
+              <Text style={styles.roadXP}>{xpForLevel(i)} XP</Text>
+            </View>
+            {current && <Text style={{ fontSize: 12 }}>📍</Text>}
+            {reached && !current && <Text style={{ fontSize: 12 }}>✅</Text>}
+          </View>
+        );
+      })}
+    </View>
+  );
+}
+
+export default function AchievementsScreen() {
+  const { achievements } = useGame();
+  const unlocked = achievements.filter(a => a.unlocked).length;
+
+  return (
+    <LinearGradient colors={['#0a0a1a', '#16213e', '#1a1a2e']} style={styles.gradient}>
+      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+        <Text style={styles.header}>🏆 Başarımlar</Text>
+        <Text style={styles.sub}>{unlocked} / {achievements.length} açıldı</Text>
+
+        {/* Progress */}
+        <View style={styles.progressRow}>
+          <View style={styles.progressTrack}>
+            <View style={[styles.progressFill, { width: `${(unlocked / achievements.length) * 100}%` }]} />
+          </View>
+          <Text style={styles.progressPct}>{Math.round((unlocked / achievements.length) * 100)}%</Text>
+        </View>
+
+        <StatsSection />
+
+        <Text style={styles.sectionTitle}>🎖️ Rozetler</Text>
+        {achievements.map((a, i) => (
+          <AchievementCard key={a.id} icon={a.icon} title={a.title} description={a.description} unlocked={a.unlocked} index={i} />
+        ))}
+
+        <LevelRoadmap />
+        <View style={{ height: 30 }} />
+      </ScrollView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  gradient: { flex: 1 },
+  scroll: { paddingHorizontal: 18, paddingTop: 55 },
+  header: { fontSize: 26, fontWeight: '900', color: '#fff', textAlign: 'center' },
+  sub: { fontSize: 13, color: '#8892b0', textAlign: 'center', marginTop: 4, marginBottom: 14 },
+
+  progressRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 16 },
+  progressTrack: { flex: 1, height: 8, backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 4, overflow: 'hidden' },
+  progressFill: { height: '100%', backgroundColor: '#e94560', borderRadius: 4 },
+  progressPct: { fontSize: 13, fontWeight: '800', color: '#e94560' },
+
+  statsBox: { backgroundColor: 'rgba(255,255,255,0.07)', borderRadius: 16, padding: 16, marginBottom: 18, gap: 10 },
+  statItem: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  statIcon: { fontSize: 18 },
+  statLabel: { flex: 1, fontSize: 13, fontWeight: '600', color: '#8892b0' },
+  statValue: { fontSize: 13, fontWeight: '800', color: '#ccd6f6' },
+
+  sectionTitle: { fontSize: 20, fontWeight: '800', color: '#fff', marginBottom: 12 },
+
+  achCard: {
+    flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 14, padding: 14, marginBottom: 8, gap: 12,
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
-  },
+  achLocked: { backgroundColor: 'rgba(255,255,255,0.03)' },
+  achIcon: { fontSize: 26 },
+  achInfo: { flex: 1 },
+  achTitle: { fontSize: 14, fontWeight: '700', color: '#ccd6f6' },
+  achDesc: { fontSize: 11, color: '#8892b0', marginTop: 2 },
+  achCheck: { fontSize: 16 },
+
+  roadmap: { marginTop: 8 },
+  roadItem: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, paddingHorizontal: 10, borderRadius: 10, marginBottom: 4 },
+  roadCurrent: { backgroundColor: 'rgba(233,69,96,0.15)' },
+  roadDot: { width: 30, height: 30, borderRadius: 15, justifyContent: 'center', alignItems: 'center' },
+  dotOn: { backgroundColor: '#e94560' },
+  dotOff: { backgroundColor: 'rgba(255,255,255,0.1)' },
+  roadNum: { fontSize: 12, fontWeight: '800', color: '#fff' },
+  roadTitle: { fontSize: 13, fontWeight: '700', color: '#4a5568' },
+  roadXP: { fontSize: 10, color: '#4a5568' },
 });
