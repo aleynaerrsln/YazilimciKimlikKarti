@@ -64,7 +64,7 @@ npx expo start
 
 ## 📦 APK İndirme
 
-> APK dosyası: [Releases](https://github.com/aleynaerrsln/YazilimciKimlikKarti/releases) sayfasından indirilebilir.
+> APK dosyası: [v1.0.0 İndir](https://github.com/aleynaerrsln/YazilimciKimlikKarti/releases/tag/v1.0.0) sayfasından indirilebilir.
 
 ## 🎥 Tanıtım Videosu
 
