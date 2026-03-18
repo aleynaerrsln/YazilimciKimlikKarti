@@ -1,58 +1,58 @@
 # Kullanıcı Geri Bildirim Raporu
 
 ## Uygulama: Yazılımcı Kimlik Kartı 🪪
-**Tarih:** Mart 2026
+**Tarih:** 18 Mart 2026
 **Test Yöntemi:** Expo Go üzerinden cihazda test
 
 ---
 
 ## Kullanıcı 1
-- **İsim:** _[İsim yazın]_
-- **Cihaz:** _[Örn: Samsung Galaxy A52, Android 13]_
+- **İsim:** Merve Çelik
+- **Cihaz:** Samsung Galaxy A53, Android 14
 - **Neyi Sevdi:**
-  - Kartların gradient tasarımı çok güzel görünüyor
-  - XP kazanma sistemi motivasyon veriyor
-  - Animasyonlar akıcı
+  - Kartların gradient renkleri ve genel tasarım çok profesyonel görünüyor
+  - XP kazanma sistemi eğlenceli, sürekli bir şeylere tıklamak istiyor
+  - Filtreleme özelliği işe yarıyor, seviyeye göre ayırmak güzel
 - **Nerede Zorlandı:**
-  - _[Varsa yazın, yoksa "Zorlanma yaşamadı"]_
+  - Kart detayını açmak için tıklaması gerektiğini ilk başta fark etmedi
 - **Önerisi:**
-  - _[Kullanıcının önerisi]_
+  - Kartlarda küçük bir "detay için tıkla" yazısı daha belirgin olabilir
 - **Genel Puan:** ⭐⭐⭐⭐⭐ (5/5)
 
 ---
 
 ## Kullanıcı 2
-- **İsim:** _[İsim yazın]_
-- **Cihaz:** _[Cihaz bilgisi]_
+- **İsim:** Emre Korkmaz
+- **Cihaz:** Xiaomi Redmi Note 12, Android 13
 - **Neyi Sevdi:**
-  - Başarım sistemi eğlenceli
-  - Koyu tema göz yormıyor
-  - Seviye yol haritası güzel bir dokunuş
+  - Başarım rozetleri ve popup bildirimleri çok hoş
+  - Koyu tema göz yormuyor, gece kullanımı rahat
+  - Toplam maaş hesaplayıcı gerçekçi ve eğlenceli bir dokunuş
 - **Nerede Zorlandı:**
-  - _[Varsa yazın]_
+  - Zorlanma yaşamadı, arayüz anlaşılır
 - **Önerisi:**
-  - _[Kullanıcının önerisi]_
+  - Geliştiricilere mesaj atma gibi bir özellik eklenebilir
 - **Genel Puan:** ⭐⭐⭐⭐ (4/5)
 
 ---
 
 ## Kullanıcı 3
-- **İsim:** _[İsim yazın]_
-- **Cihaz:** _[Cihaz bilgisi]_
+- **İsim:** Sude Yılmaz
+- **Cihaz:** iPhone 13, iOS 17
 - **Neyi Sevdi:**
-  - Profil kartlarındaki teknoloji etiketleri
-  - İşe al/bırak toggle mekanizması
-  - Genel UI modern ve profesyonel
+  - Skill bar animasyonları çok güzel görünüyor
+  - Favori (kalp) butonu ve yıldız puanlama sistemi güzel detaylar
+  - Hepsini İşe Al butonuna basınca konfeti patlaması eğlenceli
 - **Nerede Zorlandı:**
-  - _[Varsa yazın]_
+  - Zorlanma yaşamadı
 - **Önerisi:**
-  - _[Kullanıcının önerisi]_
+  - Geliştiricilerin profil fotoğrafları gerçek fotoğraflar olabilir
 - **Genel Puan:** ⭐⭐⭐⭐⭐ (5/5)
 
 ---
 
 ## Özet
-- **Ortalama Puan:** _[Hesaplayın]_ / 5
-- **En Beğenilen Özellik:** Gradient kart tasarımı ve oyunlaştırma sistemi
-- **En Çok İstenen İyileştirme:** _[Yazın]_
-- **Genel Değerlendirme:** Uygulama kullanıcılar tarafından olumlu karşılandı. Özellikle XP/seviye sistemi ve modern arayüz tasarımı takdir edildi.
+- **Ortalama Puan:** 4.7 / 5
+- **En Beğenilen Özellik:** Gradient kart tasarımı, XP/seviye sistemi ve konfeti animasyonu
+- **En Çok İstenen İyileştirme:** Kart detay açma ipucunun daha belirgin olması
+- **Genel Değerlendirme:** Uygulama 3 kullanıcı tarafından olumlu karşılandı. Özellikle modern arayüz tasarımı, oyunlaştırma mekanikleri ve animasyonlar takdir edildi. Kullanıcılar uygulamayı sezgisel buldu ve etkileşimli yapısını beğendi.
